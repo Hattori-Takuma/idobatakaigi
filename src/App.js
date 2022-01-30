@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { useNavigate } from "react-router-dom";
 import './App.css';
 
 function App() {
+  const navigate = useNavigate();
+  const movePage = (path) => {
+    navigate(`${path}`);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-wrapper">
+      <h1>Welcome to Uber-豊崎支店✌️</h1>
+      <h2
+        onClick={() => movePage("tklogin")}
+        className="individual-page-takuma">Takuma's Page</h2>
+      <hr />
+      <h2
+        onClick={() => movePage("btlogin")}
+        className="individual-page-batayan">Batayan's Page</h2>
     </div>
   );
 }
