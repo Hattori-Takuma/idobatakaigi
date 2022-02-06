@@ -16,6 +16,9 @@ function App() {
       <h2
         onClick={() => movePage("btlogin")}
         className="individual-page-batayan">Batayan's Page</h2>
+      <h2
+        onClick={() => movePage("stlogin")}
+        className="individual-page-satake">Satake's Page</h2>
     </div>
   );
 }
