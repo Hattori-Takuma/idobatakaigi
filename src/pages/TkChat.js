@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 //import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import './TkChat.css'
 
 const TkChat = () => {
 
@@ -18,10 +19,13 @@ const TkChat = () => {
       <Button
         onClick={() => movePage("/tklogin")}>戻る</Button><br />
 
-      <h1>たくま用チャットページ</h1>
+      <div className="TkChat-wrapper">
 
-      <h2>・{name}</h2>
 
+        <h1>チャットページ(Takuma)</h1>
+
+        <h2>名前・{name}</h2>
+      </div>
 
 
 
