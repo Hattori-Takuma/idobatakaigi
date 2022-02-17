@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { useNavigate, useParams } from 'react-router-dom';
+import "./StChat.css"
+import Snowfall from 'react-snowfall';
 import { generateGravatar } from '../lib/gravator';
 const StChat = () => {
   const { name } = useParams()
@@ -15,7 +17,8 @@ const StChat = () => {
     navigate(`/stlogin`);
   }
   return (
-    <div>
+    <div className="stchat-wrapper">
+      <Snowfall />
       <button
         onClick={movePage}
       >戻る</button>
