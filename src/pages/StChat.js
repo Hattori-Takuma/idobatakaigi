@@ -3,7 +3,11 @@ import Avatar from '@mui/material/Avatar';
 import { useNavigate, useParams } from 'react-router-dom';
 import "./StChat.css"
 import Snowfall from 'react-snowfall';
+import MessageCard from '../components/MessageCard';
 import { generateGravatar } from '../lib/gravator';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Send from '@mui/icons-material/Send';
 const StChat = () => {
   const { name } = useParams()
   const [avatorUrl, setAvatorUrl ] = useState("")
@@ -19,11 +23,19 @@ const StChat = () => {
   return (
     <div className="stchat-wrapper">
       <Snowfall />
-      <button
-        onClick={movePage}
-      >戻る</button>
-      <h1>{name}'s page</h1>
-      {/* <Avatar alt="Remy Sharp" src={avatorUrl} /> */}
+      <div className="chat-area">
+        <div className="show-message-area">
+          <div>ShowMessage</div>
+        </div>
+        <div className="send-message-area">
+          <TextField id="message" color="success" label="message" variant="standard" sx={{ width: '80vw' }} />
+          <div className="btn-area">
+            <IconButton color="success" component="span">
+              <Send />
+            </IconButton>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
