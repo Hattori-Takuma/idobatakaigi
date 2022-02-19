@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './TkLogin.css'
+
+
 const TkLogin = () => {
 
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const TkLogin = () => {
       <div className="TkLogin-wrapper">
 
         <h1 className="takuma" >本当にログイン画面するんですか？</h1>
-        <Button
+        <Button variant="contained" color="success"
           onClick={() => movePage("/tkchat")}>もちろんログインします！</Button><br />
 
         <Button onClick={() => movePage("*")}
