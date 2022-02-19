@@ -1,0 +1,18 @@
+.BtLogin-wrapper {
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  
+  
+  .login {
+    font-size: 2rem;
+    color: blue;
+    cursor: pointer;
+  }
+  
+  
