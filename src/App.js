@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="app-wrapper">
       <h1>Welcome to Uber-豊崎支店✌️</h1>
+      <div className="menu-area">
       <h2
         onClick={() => movePage("tklogin")}
         className="individual-page-takuma">Takuma's Page</h2>
@@ -18,7 +19,8 @@ function App() {
         className="individual-page-batayan">Batayan's Page</h2>
       <h2
         onClick={() => movePage("stlogin")}
-        className="individual-page-satake">Satake's Page</h2>
+          className="individual-page-satake">Satake's Page</h2>
+      </div>
     </div>
   );
 }
