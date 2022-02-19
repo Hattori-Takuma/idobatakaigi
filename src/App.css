@@ -7,6 +7,12 @@
   flex-direction: column;
 }
 
+.menu-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .individual-page-takuma {
   font-size: 2rem;
   color: springgreen;
@@ -24,4 +30,3 @@
   color: royalblue;
   cursor: pointer;
 }
-
