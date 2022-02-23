@@ -10,27 +10,46 @@ import IconButton from '@mui/material/IconButton';
 import Send from '@mui/icons-material/Send';
 const StChat = () => {
   const { name } = useParams()
+  const [message, setMessage] = useState("")
   const [avatorUrl, setAvatorUrl ] = useState("")
   const navigate = useNavigate();
   useEffect(() => {
-    //const url = generateGravatar()
+    // const url = generateGravatar("satake")
     // console.log("🚀 ~ file: StChat.js ~ line 11 ~ useEffect ~ url", url)
     // setAvatorUrl(url)
   },[])
   const movePage = () => {
     navigate(`/stlogin`);
   }
+
+  const sendMessage = () => {
+    setMessage('')
+  }
+
   return (
     <div className="stchat-wrapper">
       <Snowfall />
       <div className="chat-area">
         <div className="show-message-area">
-          <div>ShowMessage</div>
+          <MessageCard />
+          <MessageCard />
+          <MessageCard />
+          <MessageCard />
+          <MessageCard />
+          <MessageCard />
         </div>
         <div className="send-message-area">
-          <TextField id="message" color="success" label="message" variant="standard" sx={{ width: '80vw' }} />
+          <TextField
+            id="message"
+            value={message}
+            color="success"
+            label="message"
+            variant="standard"
+            sx={{ width: '80vw' }}
+            onChange={e => setMessage(e.target.value)}
+          />
           <div className="btn-area">
-            <IconButton color="success" component="span">
+            <IconButton onClick={sendMessage} color="success" component="span">
               <Send />
             </IconButton>
           </div>

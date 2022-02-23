@@ -1,5 +1,10 @@
 .messagecard-wrapper {
-  width: 100vw;
+  width: 80vw;
   height: 5vh;
-  border-bottom: 1px solid azure;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: azure;
+  border-radius: 1em;
+  display: flex;
+  box-sizing: content-box;
 }
