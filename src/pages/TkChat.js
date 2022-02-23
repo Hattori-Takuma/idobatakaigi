@@ -2,8 +2,11 @@ import React from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 //import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './TkChat.css'
 import { createDataInFirebase } from '../lib/firebase'
+
+
 
 
 
@@ -15,8 +18,8 @@ const TkChat = () => {
     navigate(`${path}`);
   }
 
-  const createFunc = async () => {
 
+  const createFunc = async () => {
     console.log('start')
     const res = await createDataInFirebase()
     console.log('fin', res)
@@ -27,7 +30,7 @@ const TkChat = () => {
     <div>
 
       <Button
-        onClick={() => movePage("/tklogin")}>戻る</Button><br />
+        onClick={() => movePage("/tklogin")}>戻る<LogoutIcon /></Button><br />
 
       <div className="TkChat-wrapper">
 
@@ -38,8 +41,12 @@ const TkChat = () => {
       </div>
 
       <div>
-        <h1>Main画面</h1>
+        <h1>firebase接続確認ボタン</h1>
         <Button onClick={createFunc}>DBへ保存</Button>
+
+        {/* <Button variant="outlined" color="success" onClick={createFunc}>
+          DBへ保存
+      </Button> */}
       </div>
 
 
