@@ -1,10 +1,23 @@
 .messagecard-wrapper {
-  width: 80vw;
-  height: 5vh;
   padding: 1em;
   margin-bottom: 1em;
   background-color: azure;
   border-radius: 1em;
+}
+
+.icon-area {
+  width: 6%;
+}
+
+.content-area {
+  width: 94%;
   display: flex;
-  box-sizing: content-box;
+}
+
+.message-area {
+  color: gray;
+}
+
+.message-area p {
+  margin-top: 0.6em;
 }
