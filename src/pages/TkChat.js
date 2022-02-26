@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
 import './TkChat.css'
-import { createDataInFirebase } from '../lib/firebase'
+import { createDataInFirebase, createDataSpecialInFirebase } from '../lib/firebase'
 
 
 
@@ -21,7 +21,7 @@ const TkChat = () => {
 
   const createFunc = async () => {
     console.log('start')
-    const res = await createDataInFirebase()
+    const res = await createDataInFirebase(name)
     console.log('fin', res)
   }
 
@@ -43,6 +43,7 @@ const TkChat = () => {
       <div>
         <h1>firebase接続確認ボタン</h1>
         <Button onClick={createFunc}>DBへ保存</Button>
+        <Button onClick={createDataSpecialInFirebase}>保存(test)</Button>
 
         {/* <Button variant="outlined" color="success" onClick={createFunc}>
           DBへ保存
