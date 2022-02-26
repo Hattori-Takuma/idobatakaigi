@@ -4,6 +4,12 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { query, where, getFirestore, addDoc, collection, getDocs, doc, updateDoc, deleteField, deleteDoc, setDoc, onSnapshot, getDoc } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import TkChat from '../pages/TkChat'
+// import { useNavigate, useParams } from "react-router-dom";
+
+
+// const { name } = useParams()
+
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -147,12 +153,12 @@ if (user !== null) {
 
 export const db = getFirestore();
 
-export const createDataInFirebase = async () => {
+export const createDataInFirebase = async (name) => {
   let returnObj = ""
   console.log('firebase start')
   try {
     const docRef = await addDoc(collection(db, "users"), {
-      first: "AdaAda",
+      first: name,
       last: "lovelace",
       born: 1815
     });
@@ -166,7 +172,7 @@ export const createDataInFirebase = async () => {
 }
 
 export const createDataSpecialInFirebase = async () => {
-  await setDoc(doc(db, "users", "programmingAcademy"), {
+  await setDoc(doc(db, "users", "test"), {
     first: "AdaAda",
     last: "lovelace",
     born: 1815
