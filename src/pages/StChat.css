@@ -12,10 +12,10 @@
 }
 
 .show-message-area {
-  min-width: 100vw;
   height: 86vh;
   padding: 1em;
   box-sizing: content-box;
+  overflow-y: auto;
 }
 
 .send-message-area {

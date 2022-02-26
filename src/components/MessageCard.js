@@ -1,11 +1,25 @@
 import React from 'react'
-import Avatar from '@mui/material/Avatar';
+import Gravatar from 'react-gravatar'
 import "../styles/MessageCard.css"
-const MessageCard = () => {
+const MessageCard = ({name, message}) => {
+  console.log(name)
   return (
     <div className="messagecard-wrapper">
-      <div>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+      <div className="content-area">
+        <div className="icon-area">
+          <Gravatar
+          email={name}
+          style={{ borderRadius: "25px" }}
+          size={40}
+          default="wavatar"
+          className="CustomAvatar-image"
+          protocol="https://"
+          />
+        </div>
+        <div className="message-area">
+          <h4>{name}</h4>
+          <p>{message}</p>
+        </div>
       </div>
     </div>
   )
