@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import "./StChat.css"
 import Snowfall from 'react-snowfall';
@@ -6,26 +6,30 @@ import MessageCard from '../components/MessageCard';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Send from '@mui/icons-material/Send';
+import UbModal from '../components/UbModal';
 const StChat = () => {
   const { name } = useParams()
   const [message, setMessage] = useState("")
-  const [avatorUrl, setAvatorUrl ] = useState("")
+  const [avatorUrl, setAvatorUrl] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate();
-
-  const movePage = () => {
-    navigate(`/stlogin`);
-  }
 
   const sendMessage = () => {
     setMessage('')
   }
 
+  const isOpenModal = () => {
+    console.log("this is invoked")
+    setIsOpen(!isOpen)
+  }
+
   return (
     <div className="stchat-wrapper">
       <Snowfall />
+      <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} />
       <div className="chat-area">
         <div className="show-message-area">
-          <MessageCard message="Hello world" name="satake" />
+          <MessageCard message="Hello world" name="satake" isOpenModal={isOpenModal} />
           <MessageCard message="Hello world" name="takuma" />
           <MessageCard message="Hello world" name="batayan" />
           <MessageCard message="Hello world" name="satakeyu" />
