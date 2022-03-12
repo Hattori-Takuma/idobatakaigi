@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import "./StChat.css"
-import Snowfall from 'react-snowfall';
 import MessageCard from '../components/MessageCard';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Send from '@mui/icons-material/Send';
 import UbModal from '../components/UbModal';
+import { createDataInFirebase } from '../lib//firebase';
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { db } from '../lib/firebase';
+import "./StChat.css"
 const StChat = () => {
   const { name } = useParams()
   const [message, setMessage] = useState("")
@@ -14,7 +16,18 @@ const StChat = () => {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate();
 
-  const sendMessage = () => {
+  useEffect(() => {
+    const q = query(collection(db, "users"))
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data())
+      });
+    });
+  }, [])
+
+  const sendMessage = async () => {
+    const result = await createDataInFirebase(name, message)
+    console.log("🚀 ~ file: StChat.js ~ line 19 ~ sendMessage ~ result", result)
     setMessage('')
   }
 
@@ -25,7 +38,6 @@ const StChat = () => {
 
   return (
     <div className="stchat-wrapper">
-      <Snowfall />
       <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} />
       <div className="chat-area">
         <div className="show-message-area">
