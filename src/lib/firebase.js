@@ -2,22 +2,6 @@ import { getApps, initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { query, where, getFirestore, addDoc, collection, getDocs, doc, deleteField, deleteDoc, setDoc, onSnapshot, getDoc, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore'
 
-// const firebaseConfig = {
-//   apiKey: process.env.REACT_APP_API_KEY,
-//   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-//   databaseURL: process.env.REACT_APP_DATABASE_URL,
-//   projectId: process.env.REACT_APP_PROJECT_ID,
-//   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-//   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-//   appId: process.env.REACT_APP_APP_ID
-// };
-
-// // Initialize Firebase
-// const apps = getApps
-// if (!apps.length) {
-//   initializeApp(firebaseConfig)
-// }
-
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -120,13 +104,6 @@ export const createDataInFirebase = async (name, message) => {
   }
   return returnObj
 }
-
-// export const timestamp = async () => {
-//   const docRef = doc(db, 'objects', 'some-id');
-//   const updateTimestamp = await updateDoc(docRef, {
-//     timestamp: serverTimestamp()
-//   });
-// }
 
 export const createDataSpecialInFirebase = async () => {
   await setDoc(doc(db, "users", "test"), {
