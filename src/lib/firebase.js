@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { getApps, initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { query, where, getFirestore, addDoc, collection, getDocs, doc, updateDoc, deleteField, deleteDoc, setDoc, onSnapshot, getDoc } from 'firebase/firestore'
+import { query, where, getFirestore, addDoc, collection, getDocs, doc, deleteField, deleteDoc, setDoc, onSnapshot, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import TkChat from '../pages/TkChat'
@@ -153,14 +153,14 @@ if (user !== null) {
 
 export const db = getFirestore();
 
-export const createDataInFirebase = async (name) => {
+export const createDataInFirebase = async (name, message) => {
   let returnObj = ""
   console.log('firebase start')
   try {
     const docRef = await addDoc(collection(db, "users"), {
-      first: name,
-      last: "lovelace",
-      born: 1815
+      name: name,
+      message: message,
+      time: "未実行"
     });
     returnObj = "test1"
     console.log("Document written with ID:", docRef.id);
@@ -170,6 +170,18 @@ export const createDataInFirebase = async (name) => {
   }
   return returnObj
 }
+
+export const timestamp = async () => {
+  const docRef = doc(db, 'objects', 'some-id');
+
+  const updateTimestamp = await updateDoc(docRef, {
+    timestamp: serverTimestamp()
+  });
+}
+
+
+
+
 
 export const createDataSpecialInFirebase = async () => {
   await setDoc(doc(db, "users", "test"), {
@@ -243,6 +255,7 @@ export const selectGetData = async () => {
     console.log(doc.id, " => ", doc.data());
   });
 }
+
 
 
 
