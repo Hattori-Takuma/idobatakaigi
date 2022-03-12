@@ -160,7 +160,7 @@ export const createDataInFirebase = async (name, message) => {
     const docRef = await addDoc(collection(db, "users"), {
       name: name,
       message: message,
-      time: "未実行"
+      time: serverTimestamp()
     });
     returnObj = "test1"
     console.log("Document written with ID:", docRef.id);
@@ -171,13 +171,13 @@ export const createDataInFirebase = async (name, message) => {
   return returnObj
 }
 
-export const timestamp = async () => {
-  const docRef = doc(db, 'objects', 'some-id');
+// export const timestamp = async () => {
+//   const docRef = doc(db, 'objects', 'some-id');
 
-  const updateTimestamp = await updateDoc(docRef, {
-    timestamp: serverTimestamp()
-  });
-}
+//   const updateTimestamp = await updateDoc(docRef, {
+//     timestamp: serverTimestamp()
+//   });}
+
 
 
 
