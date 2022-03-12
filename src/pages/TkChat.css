@@ -1,8 +1,26 @@
-.TkChat-wrapper {
+.TkChatmain{
+   width: 100vw;
+  height: 100vh;
+  
+    background-color: beige;
+}
+
+
+
+.name{
+margin:0 auto ;
+font-size: 30px;
+color:green;
+
+}
+.sent{
+   display: flex;
   width: 100vw;
-  height: 30vh;
-  display: flex;
+  height: 10vh;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  background-color:white;
+
+ position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
 }
