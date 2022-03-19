@@ -11,9 +11,9 @@ import { db } from '../lib/firebase';
 import "./StChat.css"
 const StChat = () => {
   const { name } = useParams()
-  const [message, setMessage] = useState("")
-  const [avatorUrl, setAvatorUrl] = useState("")
-  const [isOpen, setIsOpen] = useState(false)
+  const [message, setMessage] = useState("");
+  const [avatorUrl, setAvatorUrl] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,17 +42,8 @@ const StChat = () => {
       <div className="chat-area">
         <div className="show-message-area">
           <MessageCard message="Hello world" name="satake" isOpenModal={isOpenModal} />
-          <MessageCard message="Hello world" name="takuma" />
-          <MessageCard message="Hello world" name="batayan" />
-          <MessageCard message="Hello world" name="satakeyu" />
-          <MessageCard message="Hello world" name="satake" />
-          <MessageCard message="Hello world" name="takuma" />
-          <MessageCard message="Hello world" name="batayan" />
-          <MessageCard message="Hello world" name="satakeyu" />
-          <MessageCard message="Hello world" name="satake" />
-          <MessageCard message="Hello world" name="takuma" />
-          <MessageCard message="Hello world" name="batayan" />
-          <MessageCard message="Hello world" name="satakeyu" />
+          <MessageCard message="Hello world" name="takuma" isOpenModal={isOpenModal} />
+          <MessageCard message="Hello world" name="batayan" isOpenModal={isOpenModal} />
         </div>
         <div className="send-message-area">
           <TextField
