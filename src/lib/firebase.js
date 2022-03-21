@@ -157,7 +157,7 @@ export const createDataInFirebase = async (name, message) => {
   let returnObj = ""
   console.log('firebase start')
   try {
-    const docRef = await addDoc(collection(db, "users"), {
+    const docRef = await addDoc(collection(db, "messages"), {
       name: name,
       message: message,
       time: serverTimestamp()
@@ -194,7 +194,7 @@ export const createDataSpecialInFirebase = async () => {
 
 export const readData = async () => {
   console.log('readData')
-  const q = query(collection(db, "users"));
+  const q = query(collection(db, "messages"));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     console.log(doc.id, " => ", doc.data());

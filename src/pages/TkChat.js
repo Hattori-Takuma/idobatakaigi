@@ -9,7 +9,7 @@ import MessageCard from '../components/MessageCard';
 import IconButton from '@mui/material/IconButton';
 
 import NorthWestIcon from '@mui/icons-material/NorthWest';
-import { createDataInFirebase } from '../lib/firebase'
+import { createDataInFirebase, readData } from '../lib/firebase'
 
 
 
@@ -24,6 +24,8 @@ const TkChat = () => {
     navigate(`${path}`);
   }
 
+  //const [display, setDisplay] = useState("")
+
 
   const createFunc = async () => {
     console.log('start')
@@ -31,6 +33,16 @@ const TkChat = () => {
     console.log('fin', res)
     setMessage('')
   }
+
+
+  const read = async () => {
+    console.log("read")
+    await readData()
+
+    //setDisplay(data)
+  }
+
+
 
 
 
@@ -44,6 +56,12 @@ const TkChat = () => {
 
 
       <div>
+
+        <button onClick={read}>読み取り</button>
+
+
+
+
 
 
 
@@ -69,6 +87,9 @@ const TkChat = () => {
             <NorthWestIcon />
           </IconButton>
         </div>
+
+
+
       </div>
 
 
