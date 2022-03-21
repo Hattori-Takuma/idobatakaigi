@@ -90,12 +90,11 @@ export const createDataInFirebase = async (name, message) => {
   let returnObj = ""
   console.log('firebase start', name, message)
   try {
-    const docRef = await addDoc(collection(db, "users"), {
+    const docRef = await addDoc(collection(db, "messages"), {
       name: name,
       message: message,
       time: serverTimestamp()
     });
-    returnObj = "test1"
     console.log("Document written with ID:", docRef.id);
   } catch (e) {
     console.log('firebase start2')
