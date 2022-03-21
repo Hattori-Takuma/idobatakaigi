@@ -1,13 +1,10 @@
-.BtChat-wrapper {
+.BtChatmain{
     width: 100vw;
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-  }
-
+   height: 100vh;
+   
+     background-color: beige;
+ }
+ 
   .chat-area {
     width: 100vw;
     height: 100vh;
@@ -28,9 +25,14 @@
     justify-content: center;
     align-items: center;
     background-color: azure;
-    position: absolute;
+    position: fixed;
     bottom: 0; 
   }
+
+  .name{
+    margin:0 auto ;
+    font-size: 30px;
+    }
   
   .btn-area {
     width: 10vw;

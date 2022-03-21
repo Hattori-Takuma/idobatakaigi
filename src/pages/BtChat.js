@@ -1,11 +1,13 @@
-import React, { useState,useEffect } from 'react';
-import {useParams} from "react-router-dom";
+import React, { useState } from 'react';
+import { useParams,useNavigate } from "react-router-dom";
 //import TextField from '@mui/material/TextField';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Send from '@mui/icons-material/Send';
 import MessageCard from '../components/MessageCard';
+import { createDataInFirebase } from '../lib/firebase'
+import Button from '@mui/material/Button';
 import './BtChat.css'
 
 const BtChat = () => {
@@ -13,30 +15,30 @@ const BtChat = () => {
   const { name } = useParams()
   const [message, setMessage] = useState("")
   const [avatorUrl, setAvatorUrl ] = useState("")
+  const navigate = useNavigate();
+  const movePage = (path) => {
+    navigate(`${path}`);
+  }
 
-  const sendMessage = () => {
+  const createFunc = async () => {
+    console.log('start')
+    const res = await createDataInFirebase(name, message)
+    console.log('fin', res)
     setMessage('')
   }
 
   return (
   <div>
-    <div className="BtChat-wrapper">
+      <div className="BtChatmain">
 
-      <h1>チャットページ(tomoya)</h1>
-      <h2>名前・{name}</h2>
+      <Button onClick={() => movePage("/btlogin")}>戻る</Button><br />
 
-    </div>
-    <div className="chat-area">
-      <div className="show-message-area">
-          <MessageCard />
-          <MessageCard />
-          <MessageCard />
-          <MessageCard />
-          <MessageCard />
-          <MessageCard />
       </div>
+      <div className="chat-area">
+      
       </div>
       <div className="send-message-area">
+      <div className="name">{name}</div>
           <TextField
             id="message"
             value={message}
@@ -47,7 +49,7 @@ const BtChat = () => {
             onChange={e => setMessage(e.target.value)}
           />
           <div className="btn-area">
-            <IconButton onClick={sendMessage} color="success" component="span">
+            <IconButton onClick={createFunc} color="success" component="span">
               <Send />
             </IconButton>
           </div>
