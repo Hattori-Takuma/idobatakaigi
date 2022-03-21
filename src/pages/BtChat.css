@@ -1,40 +1,37 @@
 .BtChat-wrapper {
-    width: 100vw;
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-  }
+  width: 100vw;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-  .chat-area {
-    width: 100vw;
-    height: 100vh;
-    box-sizing: content-box;
-  }
-  
-  .show-message-area {
-    min-width: 100vw;
-    height: 86vh;
-    padding: 1em;
-    box-sizing: content-box;
-  }
-  
-  .send-message-area {
-    display: flex;
-    width: 100vw;
-    height: 10vh;
-    justify-content: center;
-    align-items: center;
-    background-color: azure;
-    position: absolute;
-    bottom: 0; 
-  }
-  
-  .btn-area {
-    width: 10vw;
-    display: flex;
-    justify-content: center;
-  }
-  
+.chat-area {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: content-box;
+}
+
+.show-message-area {
+  height: 86vh;
+  padding: 1em;
+  box-sizing: content-box;
+}
+
+.send-message-area {
+  display: flex;
+  width: 100vw;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+  background-color: azure;
+  position: absolute;
+  bottom: 0;
+}
+
+.btn-area {
+  width: 10vw;
+  display: flex;
+  justify-content: center;
+}

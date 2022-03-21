@@ -1,5 +1,6 @@
 .messagecard-wrapper {
   padding: 1em;
+  width: 70vw;
   margin-bottom: 1em;
   background-color: azure;
   border-radius: 1em;
@@ -10,7 +11,7 @@
 }
 
 .content-area {
-  width: 94%;
+  width: 90%;
   display: flex;
 }
 
