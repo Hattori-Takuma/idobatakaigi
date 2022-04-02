@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useRef,useLayoutEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import MessageCard from '../components/MessageCard';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Send from '@mui/icons-material/Send';
-import UbModal from '../components/UbModal';
 import { db, createDataInFirebase } from '../lib//firebase';
-import { collection, query, onSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
 import "./StChat.css"
 const StChat = () => {
   const { name } = useParams()
   const [message, setMessage] = useState("");
-  const [avatorUrl, setAvatorUrl] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen,setIsOpen] = useState(false)
   const [chatData, setChatData] = useState([])
-  const navigate = useNavigate();
-
+  const scrollBottomRef = useRef(null);
+  
   useEffect(() => {
-    const q = query(collection(db, "messages"));
+    const q = query(collection(db, "messages"), orderBy("time", "asc"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const messagesInfo = [];
       querySnapshot.forEach((doc) => {
         messagesInfo.push(doc.data());
       });
-      console.log("🚀 ~ file: StChat.js ~ line 24 ~ querySnapshot.forEach ~ doc", messagesInfo)
       setChatData(messagesInfo)
     });
+    return unsubscribe
   }, []);
+
+  useLayoutEffect(() => {
+  scrollBottomRef.current.scrollIntoView();
+  },[chatData])
 
   const sendMessage = async () => {
     const result = await createDataInFirebase(name, message)
@@ -42,14 +44,16 @@ const StChat = () => {
 
   return (
     <div className="stchat-wrapper">
-      <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} />
       <div className="chat-area">
-        <div className="show-message-area">
+        <div
+          className="show-message-area"
+        >
           {
-            chatData.map(chat => {
-              return <MessageCard message={chat.message} name={chat.name} isOpenModal={isOpenModal} />
+            chatData.map((chat, index) => {
+              return <MessageCard key={index} message={chat.message} name={chat.name} isOpen={isOpen} isOpenModal={isOpenModal} />
             })
           }
+          <div ref={scrollBottomRef}></div>
         </div>
         <div className="send-message-area">
           <TextField
