@@ -1,9 +1,11 @@
 import React from 'react'
 import Gravatar from 'react-gravatar'
+// import UbModal from '../components/UbModal';
 import "../styles/MessageCard.css"
-const MessageCard = ({name, message, isOpenModal}) => {
+const MessageCard = ({ name, message, isOpen, isOpenModal }) => {
   return (
     <div className="messagecard-wrapper">
+      {/* <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} /> */}
       <div className="content-area">
         <div className="icon-area">
           <Gravatar

@@ -17,7 +17,7 @@ const style = {
 };
 
 export default function UbModal({name, isOpen, isOpenModal}) {
-  console.log(isOpen.toString(), 'is open check')
+  console.log("🚀 ~ file: UbModal.js ~ line 20 ~ UbModal ~ isOpen", isOpen)
   return (
     <div>
       <Modal
