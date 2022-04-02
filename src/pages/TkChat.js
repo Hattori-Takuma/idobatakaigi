@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 
 import NorthWestIcon from '@mui/icons-material/NorthWest';
 import { createDataInFirebase, readData } from '../lib/firebase'
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 
 
@@ -24,7 +25,7 @@ const TkChat = () => {
     navigate(`${path}`);
   }
 
-  //const [display, setDisplay] = useState("")
+  const [chat, setChat] = useState("")
 
 
   const createFunc = async () => {
@@ -35,12 +36,22 @@ const TkChat = () => {
   }
 
 
-  const read = async () => {
-    console.log("read")
-    await readData()
+  // const read = async () => {
+  //   console.log("read")
+  //   await readData()
 
-    //setDisplay(data)
-  }
+  //   //setDisplay(data)
+  // }
+
+  // const q = query(collection(db, "messages"));
+  // const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //   const querySnapshot = await getDocs(q);
+  //   querySnapshot.forEach((doc) => {
+  //     console.log(doc.id, " => ", doc.data());
+  //   });
+  // });
+
+
 
 
 
@@ -55,21 +66,7 @@ const TkChat = () => {
 
 
 
-      <div>
 
-        <button onClick={read}>読み取り</button>
-
-
-
-
-
-
-
-
-        {/* <Button variant="outlined" color="success" onClick={createFunc}>
-          DBへ保存
-      </Button> */}
-      </div>
 
       <div className="sent">
         <div className="name">{name}</div>
