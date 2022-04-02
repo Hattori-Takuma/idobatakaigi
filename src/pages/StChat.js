@@ -28,7 +28,7 @@ const StChat = () => {
   }, []);
 
   useLayoutEffect(() => {
-  scrollBottomRef.current.scrollIntoView();
+    scrollBottomRef.current.scrollIntoView({behavior: 'smooth'});
   },[chatData])
 
   const sendMessage = async () => {
