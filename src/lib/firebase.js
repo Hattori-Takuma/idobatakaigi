@@ -141,7 +141,6 @@ export const deletUserData = async () => {
 
 
 export const myDataInFirebase = async (first, last, born) => {
-  let returnObj = ""
   console.log('firebase start')
   try {
     const docRef = await addDoc(collection(db, "users"), {
@@ -149,10 +148,8 @@ export const myDataInFirebase = async (first, last, born) => {
       last: last,
       born: born
     });
-    returnObj = "test1"
     console.log("Document written with ID:", docRef.id);
   } catch (e) {
-    returnObj = "test2"
     console.error("Error adding document: ", e);
   }
 }
@@ -160,7 +157,6 @@ export const myDataInFirebase = async (first, last, born) => {
 export const getData = async () => {
   const querySnapshot = await getDocs(collection(db, "users"));
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
   });
 }
@@ -169,7 +165,6 @@ export const selectGetData = async () => {
   const q = query(collection(db, "users"), where("born", "==", "1996"));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
   });
 }
