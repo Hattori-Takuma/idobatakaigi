@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -9,8 +9,8 @@ import MessageCard from '../components/MessageCard';
 import IconButton from '@mui/material/IconButton';
 
 import NorthWestIcon from '@mui/icons-material/NorthWest';
-import { createDataInFirebase, readData } from '../lib/firebase'
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { createDataInFirebase, db } from '../lib/firebase'
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
 
 
@@ -25,7 +25,8 @@ const TkChat = () => {
     navigate(`${path}`);
   }
 
-  const [chat, setChat] = useState("")
+  const [chat, setChat] = useState([])
+
 
 
   const createFunc = async () => {
@@ -35,21 +36,19 @@ const TkChat = () => {
     setMessage('')
   }
 
+  useEffect(() => {
+    const q = query(collection(db, "messages"), orderBy("time", "asc"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const messagesInfo = [];
+      querySnapshot.forEach((doc) => {
+        messagesInfo.push(doc.data());
+      });
+      setChat(messagesInfo)
+    });
+    return unsubscribe
+  }, []);
 
-  // const read = async () => {
-  //   console.log("read")
-  //   await readData()
 
-  //   //setDisplay(data)
-  // }
-
-  // const q = query(collection(db, "messages"));
-  // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //   const querySnapshot = await getDocs(q);
-  //   querySnapshot.forEach((doc) => {
-  //     console.log(doc.id, " => ", doc.data());
-  //   });
-  // });
 
 
 
@@ -64,7 +63,16 @@ const TkChat = () => {
       <Button
         onClick={() => movePage("/tklogin")}>戻る<LogoutIcon /></Button><br />
 
+      <div
+        className="show-message-area"
+      >
+        {
+          chat.map((chat, index) => {
+            return <MessageCard key={index} message={chat.message} name={chat.name} />
+          })
+        }
 
+      </div>
 
 
 
@@ -84,6 +92,8 @@ const TkChat = () => {
             <NorthWestIcon />
           </IconButton>
         </div>
+
+
 
 
 
