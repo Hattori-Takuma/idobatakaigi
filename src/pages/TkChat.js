@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -24,9 +24,8 @@ const TkChat = () => {
   const movePage = (path) => {
     navigate(`${path}`);
   }
-
   const [chat, setChat] = useState([])
-
+  const scrollBottomRef = useRef(null);
 
 
   const createFunc = async () => {
@@ -47,6 +46,9 @@ const TkChat = () => {
     });
     return unsubscribe
   }, []);
+  useLayoutEffect(() => {
+    scrollBottomRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [chat])
 
 
 
@@ -63,14 +65,14 @@ const TkChat = () => {
       <Button
         onClick={() => movePage("/tklogin")}>戻る<LogoutIcon /></Button><br />
 
-      <div
-        className="show-message-area"
-      >
+      <div className="show-message-area" >
         {
           chat.map((chat, index) => {
             return <MessageCard key={index} message={chat.message} name={chat.name} />
           })
         }
+
+        <div ref={scrollBottomRef}></div>
 
       </div>
 
