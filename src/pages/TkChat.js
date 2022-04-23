@@ -6,15 +6,15 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import './TkChat.css'
 import MessageCard from '../components/MessageCard';
 
-import IconButton from '@mui/material/IconButton';
-
+import IconButton from '@mui/material/IconButton'
 import NorthWestIcon from '@mui/icons-material/NorthWest';
 import { createDataInFirebase, db } from '../lib/firebase'
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 
-
-
-
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Gravatar from 'react-gravatar'
 
 const TkChat = () => {
 
@@ -25,6 +25,7 @@ const TkChat = () => {
     navigate(`${path}`);
   }
   const [chat, setChat] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
   const scrollBottomRef = useRef(null);
 
 
@@ -51,7 +52,40 @@ const TkChat = () => {
   }, [chat])
 
 
+  const isOpenModal = () => {
+    console.log("this is invoked")
+    setIsOpen(!isOpen)
+  }
 
+  const UbModal = ({ name, isOpen, isOpenModal }) => {
+    console.log("🚀 ~ file: UbModal.js ~ line 20 ~ UbModal ~ isOpen", isOpen)
+    return (
+      <div>
+        <Modal
+          open={isOpen}
+          onClose={isOpenModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box >
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Gravatar
+                email={name}
+                style={{ borderRadius: "25px" }}
+                size={40}
+                default="wavatar"
+                className="CustomAvatar-image"
+                protocol="https://"
+              />
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {name} さん
+          </Typography>
+          </Box>
+        </Modal>
+      </div>
+    );
+  }
 
 
 

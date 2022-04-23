@@ -16,7 +16,7 @@ const style = {
   p: 4,
 };
 
-export default function UbModal({name, isOpen, isOpenModal}) {
+export default function UbModal({ name, isOpen, isOpenModal }) {
   console.log("🚀 ~ file: UbModal.js ~ line 20 ~ UbModal ~ isOpen", isOpen)
   return (
     <div>
