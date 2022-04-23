@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Send from '@mui/icons-material/Send';
 import { db, createDataInFirebase } from '../lib//firebase';
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
-
+import UbModal from '../components/UbModal';
 import "./StChat.css"
 const StChat = () => {
   const { name } = useParams()
@@ -38,19 +38,27 @@ const StChat = () => {
   }
 
   const isOpenModal = () => {
-    console.log("this is invoked")
     setIsOpen(!isOpen)
   }
 
   return (
     <div className="stchat-wrapper">
+      <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} />
       <div className="chat-area">
         <div
           className="show-message-area"
         >
           {
             chatData.map((chat, index) => {
-              return <MessageCard key={index} message={chat.message} name={chat.name} isOpen={isOpen} isOpenModal={isOpenModal} />
+              return (
+                  <MessageCard
+                    key={index.toString()}
+                    message={chat.message}
+                    name={chat.name}
+                    isOpen={isOpen}
+                    isOpenModal={isOpenModal}
+                  />
+                )
             })
           }
           <div ref={scrollBottomRef}></div>

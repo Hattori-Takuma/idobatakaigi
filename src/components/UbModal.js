@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Gravatar from 'react-gravatar'
+import { useAppSelector } from '../hooks/useRTK';
+import { selectUser } from '../features/selectUserSlice';
 
 const style = {
   position: 'absolute',
@@ -16,8 +18,10 @@ const style = {
   p: 4,
 };
 
-export default function UbModal({ name, isOpen, isOpenModal }) {
-  console.log("🚀 ~ file: UbModal.js ~ line 20 ~ UbModal ~ isOpen", isOpen)
+
+export default function UbModal({ isOpen, isOpenModal }) {
+  const user = useAppSelector(selectUser)
+
   return (
     <div>
       <Modal
@@ -29,7 +33,7 @@ export default function UbModal({ name, isOpen, isOpenModal }) {
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <Gravatar
-              email={name}
+              email={user.name}
               style={{ borderRadius: "25px" }}
               size={40}
               default="wavatar"
@@ -38,7 +42,7 @@ export default function UbModal({ name, isOpen, isOpenModal }) {
             />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {name} さん
+            {user.name} さん
           </Typography>
         </Box>
       </Modal>
