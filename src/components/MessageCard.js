@@ -1,13 +1,23 @@
 import React from 'react'
 import Gravatar from 'react-gravatar'
-// import UbModal from '../components/UbModal';
+import { useAppDispatch } from '../hooks/useRTK';
+import { activeUser } from '../features/selectUserSlice';
 import "../styles/MessageCard.css"
-const MessageCard = ({ name, message, isOpen, isOpenModal }) => {
+const MessageCard = ({ name, message, isOpenModal }) => {
+  const dispatch = useAppDispatch()
+  const handleClick = () => {
+    console.log("🚀 ~ file: MessageCard.js ~ line 5 ~ MessageCard ~ name", name)
+    dispatch(activeUser({
+      name
+    }))
+  }
   return (
     <div className="messagecard-wrapper">
-      {/* <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} /> */}
       <div className="content-area">
-        <div className="icon-area">
+        <div
+          className="icon-area"
+          onClick={handleClick}
+        >
           <Gravatar
             email={name}
             style={{ borderRadius: "25px" }}
