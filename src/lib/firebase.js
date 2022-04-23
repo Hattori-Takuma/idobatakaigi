@@ -22,21 +22,29 @@ export const db = getFirestore();
 const provider = new GoogleAuthProvider();
 
 export const googleLogin = async () => {
-  let result4 = ""
   await signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log(user, 'user check')
-      result4 = user
-
-    }).catch((error) => {
-      const errorMessage = error.message;
-      console.log(errorMessage, 'error message check')
-      result4 = "error"
-    });
-  return result4
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    console.log("🚀 ~ file: firebase.js ~ line 32 ~ .then ~ user", user)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    console.log("🚀 ~ file: firebase.js ~ line 37 ~ .then ~ errorCode", errorCode)
+    const errorMessage = error.message;
+    console.log("🚀 ~ file: firebase.js ~ line 39 ~ .then ~ errorMessage", errorMessage)
+    // The email of the user's account used.
+    const email = error.email;
+    console.log("🚀 ~ file: firebase.js ~ line 42 ~ .then ~ email", email)
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    console.log("🚀 ~ file: firebase.js ~ line 45 ~ .then ~ credential", credential)
+    // ...
+  });
 
 }
 
