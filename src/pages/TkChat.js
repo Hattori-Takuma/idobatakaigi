@@ -10,10 +10,10 @@ import IconButton from '@mui/material/IconButton'
 import NorthWestIcon from '@mui/icons-material/NorthWest';
 import { createDataInFirebase, db } from '../lib/firebase'
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+import UbModal from '../components/UbModal';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import Gravatar from 'react-gravatar'
 
 const TkChat = () => {
@@ -57,35 +57,9 @@ const TkChat = () => {
     setIsOpen(!isOpen)
   }
 
-  const UbModal = ({ name, isOpen, isOpenModal }) => {
-    console.log("🚀 ~ file: UbModal.js ~ line 20 ~ UbModal ~ isOpen", isOpen)
-    return (
-      <div>
-        <Modal
-          open={isOpen}
-          onClose={isOpenModal}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              <Gravatar
-                email={name}
-                style={{ borderRadius: "25px" }}
-                size={40}
-                default="wavatar"
-                className="CustomAvatar-image"
-                protocol="https://"
-              />
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {name} さん
-          </Typography>
-          </Box>
-        </Modal>
-      </div>
-    );
-  }
+
+
+
 
 
 
@@ -95,14 +69,16 @@ const TkChat = () => {
 
   return (
     <div className="TkChatmain">
-
+      <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} />
       <Button
         onClick={() => movePage("/tklogin")}>戻る<LogoutIcon /></Button><br />
 
       <div className="show-message-area" >
         {
           chat.map((chat, index) => {
-            return <MessageCard key={index} message={chat.message} name={chat.name} />
+            return <MessageCard key={index} message={chat.message} name={chat.name} isOpen={isOpen}
+              isOpenModal={isOpenModal}
+            />
           })
         }
 
