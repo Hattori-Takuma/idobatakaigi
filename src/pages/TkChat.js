@@ -6,15 +6,15 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import './TkChat.css'
 import MessageCard from '../components/MessageCard';
 
-import IconButton from '@mui/material/IconButton';
-
+import IconButton from '@mui/material/IconButton'
 import NorthWestIcon from '@mui/icons-material/NorthWest';
 import { createDataInFirebase, db } from '../lib/firebase'
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+import UbModal from '../components/UbModal';
 
-
-
-
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Gravatar from 'react-gravatar'
 
 const TkChat = () => {
 
@@ -25,6 +25,7 @@ const TkChat = () => {
     navigate(`${path}`);
   }
   const [chat, setChat] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
   const scrollBottomRef = useRef(null);
 
 
@@ -51,6 +52,13 @@ const TkChat = () => {
   }, [chat])
 
 
+  const isOpenModal = () => {
+    console.log("this is invoked")
+    setIsOpen(!isOpen)
+  }
+
+
+
 
 
 
@@ -61,14 +69,16 @@ const TkChat = () => {
 
   return (
     <div className="TkChatmain">
-
+      <UbModal name={name} isOpen={isOpen} isOpenModal={isOpenModal} />
       <Button
         onClick={() => movePage("/tklogin")}>戻る<LogoutIcon /></Button><br />
 
       <div className="show-message-area" >
         {
           chat.map((chat, index) => {
-            return <MessageCard key={index} message={chat.message} name={chat.name} />
+            return <MessageCard key={index} message={chat.message} name={chat.name} isOpen={isOpen}
+              isOpenModal={isOpenModal}
+            />
           })
         }
 

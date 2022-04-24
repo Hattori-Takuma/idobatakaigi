@@ -18,9 +18,10 @@ const style = {
   p: 4,
 };
 
+
 export default function UbModal({ isOpen, isOpenModal }) {
   const user = useAppSelector(selectUser)
-  
+
   return (
     <div>
       <Modal
